@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pair7z.echartapi.mapper.ShareholderMapper">
+    <resultMap id="BaseResultMap" type="com.pair7z.echartapi.entity.Shareholder">
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="value" jdbcType="INTEGER" property="value"/>
+    </resultMap>
+    <select id="queryAllShareholders" resultMap="BaseResultMap">
+        SELECT * FROM shareholder
+    </select>
+    <insert id="addShareholder" parameterType="com.pair7z.echartapi.entity.Shareholder">
+        INSERT INTO shareholder VALUES(#{name},#{value})
+    </insert>
+    <delete id="delShareholderByName" parameterType="java.lang.String">
+        DELETE FROM shareholder
+        <where>name=#{name}</where>
+    </delete>
+    <update id="modifyShare" parameterType="com.pair7z.echartapi.entity.Shareholder">
+        UPDATE shareholder SET value=#{value} <where>name=#{name}</where>
+    </update>
+</mapper>
